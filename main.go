@@ -290,16 +290,16 @@ func installVersion(arg string, custBinPath *string, mirrorURL *string) {
 		}
 
 		//if the requested version had not been downloaded before
-		listAll := true                                     //set list all true - all versions including beta and rc will be displayed
-		tflist, _ := lib.GetTFList(*mirrorURL, listAll)     //get list of versions
-		exist := lib.VersionExist(requestedVersion, tflist) //check if version exist before downloading it
-
-		if exist {
-			lib.Install(requestedVersion, *custBinPath, *mirrorURL)
-		} else {
-			fmt.Println("The provided terraform version does not exist. Try `tfswitch -l` to see all available versions.")
-			os.Exit(1)
-		}
+		// listAll := true                                     //set list all true - all versions including beta and rc will be displayed
+		// tflist, _ := lib.GetTFList(*mirrorURL, listAll)     //get list of versions
+		// exist := lib.VersionExist(requestedVersion, tflist) //check if version exist before downloading it
+		lib.Install(requestedVersion, *custBinPath, *mirrorURL)
+		// if exist {
+		// 	lib.Install(requestedVersion, *custBinPath, *mirrorURL)
+		// } else {
+		// 	fmt.Println("The provided terraform version does not exist. Try `tfswitch -l` to see all available versions.")
+		// 	os.Exit(1)
+		// }
 
 	} else {
 		lib.PrintInvalidTFVersion()
@@ -309,7 +309,7 @@ func installVersion(arg string, custBinPath *string, mirrorURL *string) {
 	}
 }
 
-//retrive file content of regular file
+// retrive file content of regular file
 func retrieveFileContents(file string) string {
 	fileContents, err := ioutil.ReadFile(file)
 	if err != nil {
